@@ -1,0 +1,10 @@
+D:\Program Dev\PersonalDesktopPet\PersonalDesktopPet\bin\Debug\PersonalDesktopPet.exe.config
+D:\Program Dev\PersonalDesktopPet\PersonalDesktopPet\bin\Debug\PersonalDesktopPet.exe
+D:\Program Dev\PersonalDesktopPet\PersonalDesktopPet\bin\Debug\PersonalDesktopPet.pdb
+D:\Program Dev\PersonalDesktopPet\PersonalDesktopPet\obj\Debug\PersonalDesktopPet.csprojAssemblyReference.cache
+D:\Program Dev\PersonalDesktopPet\PersonalDesktopPet\obj\Debug\PersonalDesktopPet.desktopPetForm.resources
+D:\Program Dev\PersonalDesktopPet\PersonalDesktopPet\obj\Debug\PersonalDesktopPet.Properties.Resources.resources
+D:\Program Dev\PersonalDesktopPet\PersonalDesktopPet\obj\Debug\PersonalDesktopPet.csproj.GenerateResource.cache
+D:\Program Dev\PersonalDesktopPet\PersonalDesktopPet\obj\Debug\PersonalDesktopPet.csproj.CoreCompileInputs.cache
+D:\Program Dev\PersonalDesktopPet\PersonalDesktopPet\obj\Debug\PersonalDesktopPet.exe
+D:\Program Dev\PersonalDesktopPet\PersonalDesktopPet\obj\Debug\PersonalDesktopPet.pdb
