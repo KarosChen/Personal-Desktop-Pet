@@ -46,18 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions\Action.cs" />
-    <Compile Include="Actions\Stand.cs" />
-    <Compile Include="Animations\Animation.cs" />
-    <Compile Include="Animations\Pose.cs" />
-    <Compile Include="Animations\XmlLoader.cs" />
+    <Compile Include="Mascots\Actions\Action.cs" />
+    <Compile Include="Mascots\Actions\Stand.cs" />
+    <Compile Include="Mascots\Actions\Walk.cs" />
+    <Compile Include="Mascots\Animations\Animation.cs" />
+    <Compile Include="Mascots\Animations\Pose.cs" />
+    <Compile Include="Mascots\Animations\XmlLoader.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mascot.cs" />
+    <Compile Include="Mascots\Mascot.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

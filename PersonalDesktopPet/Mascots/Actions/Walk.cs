@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDesktopPet.Actions
+namespace PersonalDesktopPet.Mascots.Actions
 {
-    class Stand : Action
+    class Walk : Action
     {
-
     }
 }

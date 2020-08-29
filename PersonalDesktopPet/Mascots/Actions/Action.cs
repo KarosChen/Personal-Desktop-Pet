@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PersonalDesktopPet.Animations;
+using PersonalDesktopPet.Mascots.Animations;
 
-namespace PersonalDesktopPet.Actions
+namespace PersonalDesktopPet.Mascots.Actions
 {
     class Action
     {

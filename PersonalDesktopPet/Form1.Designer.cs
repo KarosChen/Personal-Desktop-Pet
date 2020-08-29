@@ -28,39 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.petPictureBox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.petPictureBox)).BeginInit();
+            this.mascotPictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.mascotPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // petPictureBox
+            // mascotPictureBox
             // 
-            this.petPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.petPictureBox.Location = new System.Drawing.Point(0, 0);
-            this.petPictureBox.Name = "petPictureBox";
-            this.petPictureBox.Size = new System.Drawing.Size(799, 450);
-            this.petPictureBox.TabIndex = 0;
-            this.petPictureBox.TabStop = false;
+            this.mascotPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mascotPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.mascotPictureBox.Margin = new System.Windows.Forms.Padding(0);
+            this.mascotPictureBox.Name = "mascotPictureBox";
+            this.mascotPictureBox.Size = new System.Drawing.Size(128, 128);
+            this.mascotPictureBox.TabIndex = 0;
+            this.mascotPictureBox.TabStop = false;
+            this.mascotPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mascotPictureBox_MouseDown);
+            this.mascotPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mascotPictureBox_MouseMove);
+            this.mascotPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mascotPictureBox_MouseUp);
             // 
             // desktopPetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(799, 450);
-            this.Controls.Add(this.petPictureBox);
+            this.BackColor = System.Drawing.Color.Silver;
+            this.ClientSize = new System.Drawing.Size(128, 128);
+            this.Controls.Add(this.mascotPictureBox);
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "desktopPetForm";
             this.Text = "Form1";
-            this.TransparencyKey = System.Drawing.Color.White;
+            this.TransparencyKey = System.Drawing.Color.Silver;
             this.Load += new System.EventHandler(this.desktopPetForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.petPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mascotPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox petPictureBox;
+        private System.Windows.Forms.PictureBox mascotPictureBox;
     }
 }
 

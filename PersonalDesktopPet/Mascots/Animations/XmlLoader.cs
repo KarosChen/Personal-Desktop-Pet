@@ -7,7 +7,7 @@ using System.Xml;
 using System.IO;
 using System.Windows.Forms;
 
-namespace PersonalDesktopPet.Animations
+namespace PersonalDesktopPet.Mascots.Animations
 {
     class XmlLoader
     {

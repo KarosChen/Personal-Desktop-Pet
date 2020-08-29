@@ -8,7 +8,7 @@ using System.Xml;
 using System.IO;
 using System.Windows.Forms;
 
-namespace PersonalDesktopPet.Animations
+namespace PersonalDesktopPet.Mascots.Animations
 {
     class Animation
     {
@@ -41,19 +41,20 @@ namespace PersonalDesktopPet.Animations
             }
         }
 
-        public Image Start()
+        public Pose GiveNextPose()
         {
-            Image showingPose;
-            showingPose = _poseList[_poseIndex].Image;
+            Pose displayingPose;
             if (_poseIndex < _poseList.Count)
             {
+                displayingPose = _poseList[_poseIndex];
                 _poseIndex++;
             }
             else
             {
                 _poseIndex = 0;
+                displayingPose = _poseList[_poseIndex];
             }
-            return showingPose;
+            return displayingPose;
         }
     }
 }
