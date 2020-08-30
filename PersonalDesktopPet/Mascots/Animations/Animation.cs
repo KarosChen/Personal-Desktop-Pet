@@ -41,19 +41,19 @@ namespace PersonalDesktopPet.Mascots.Animations
             }
         }
 
-        public Pose GiveNextPose()
+        public Pose GetNextPose()
         {
             Pose displayingPose;
             if (_poseIndex < _poseList.Count)
             {
-                displayingPose = _poseList[_poseIndex];
-                _poseIndex++;
+                displayingPose = _poseList[_poseIndex++];
             }
             else
             {
                 _poseIndex = 0;
-                displayingPose = _poseList[_poseIndex];
+                displayingPose = _poseList[_poseIndex++];
             }
+
             return displayingPose;
         }
     }

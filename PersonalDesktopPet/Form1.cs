@@ -45,9 +45,8 @@ namespace PersonalDesktopPet
 
         private void TimerTick(object sender, EventArgs e)
         {
-            _playAnimationTimer.Interval = _executingAction.Animation.GiveNextPose().Duration * 50;
-            Image displayingImage = _executingAction.Animation.GiveNextPose().Image;
-
+            Image displayingImage = _executingAction.GetNextImage();
+            _playAnimationTimer.Interval = _executingAction.GetNextDuration() * 20;
             //The range is a test function to set form and pictureBox width and height 
             this.Width = displayingImage.Width;
             this.Height = displayingImage.Height;
