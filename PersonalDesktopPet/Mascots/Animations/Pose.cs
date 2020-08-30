@@ -10,8 +10,10 @@ namespace PersonalDesktopPet.Mascots.Animations
     class Pose
     {
         int _duration;
-        int _xVelocity;
-        int _yVelocity;
+        int _velocityX;
+        int _velocityY;
+        int _imageAnchorX;
+        int _imageAnchorY;
         Image _image;
 
         public int Duration
@@ -26,27 +28,51 @@ namespace PersonalDesktopPet.Mascots.Animations
             }
         }
 
-        public int XVelocity
+        public int VelocityX
         {
             get
             {
-                return _xVelocity;
+                return _velocityX;
             }
             set
             {
-                _xVelocity = value;
+                _velocityX = value;
             }
         }
 
-        public int YVelocity
+        public int VelocityY
         {
             get
             {
-                return _yVelocity;
+                return _velocityY;
             }
             set
             {
-                _yVelocity = value;
+                _velocityY = value;
+            }
+        }
+
+        public int ImageAnchorX
+        {
+            get
+            {
+                return _imageAnchorX;
+            }
+            set
+            {
+                _imageAnchorX = value;
+            }
+        }
+
+        public int ImageAnchorY
+        {
+            get
+            {
+                return _imageAnchorY;
+            }
+            set
+            {
+                _imageAnchorY = value;
             }
         }
 

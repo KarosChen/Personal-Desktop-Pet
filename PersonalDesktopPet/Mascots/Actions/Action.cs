@@ -43,5 +43,10 @@ namespace PersonalDesktopPet.Mascots.Actions
         {
             return _nextPose.Duration;
         }
+
+        public string GetBorderType()
+        {
+            return _animation.BorderType;
+        }
     }
 }
