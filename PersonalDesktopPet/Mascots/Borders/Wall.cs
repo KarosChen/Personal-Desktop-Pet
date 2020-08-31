@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PersonalDesktopPet.Mascots.Borders
 {
-    class LeftWall : Border
+    class Wall : Border
     {
-        public LeftWall(Point startingPoint, Point endingPoint) : base(startingPoint, endingPoint)
+        public Wall(Point startingPoint, Point endingPoint) : base(startingPoint, endingPoint)
         {
 
         }

@@ -25,6 +25,12 @@ namespace PersonalDesktopPet
         public desktopPetForm()
         {
             InitializeComponent();
+            System.Console.WriteLine("Primary screen resolution: "
+                                   + SystemInformation.PrimaryMonitorSize);
+            System.Console.WriteLine("Virtual size: "
+                                               + SystemInformation.VirtualScreen);
+            System.Console.WriteLine("Monitors count: "
+                                               + SystemInformation.MonitorCount);
         }
 
         private void desktopPetForm_Load(object sender, EventArgs e)
@@ -33,7 +39,6 @@ namespace PersonalDesktopPet
             _executingAction = mascot.GetExecutingAction();
             InitializeTimer();
             _playAnimationTimer.Start();
-
         }
 
         private void InitializeTimer()
