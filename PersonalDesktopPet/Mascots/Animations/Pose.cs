@@ -12,8 +12,7 @@ namespace PersonalDesktopPet.Mascots.Animations
         int _duration;
         int _velocityX;
         int _velocityY;
-        int _imageAnchorX;
-        int _imageAnchorY;
+        Point _imageAnchor;
         Image _image;
 
         public int Duration
@@ -52,27 +51,15 @@ namespace PersonalDesktopPet.Mascots.Animations
             }
         }
 
-        public int ImageAnchorX
+        public Point ImageAnchor
         {
             get
             {
-                return _imageAnchorX;
+                return _imageAnchor;
             }
             set
             {
-                _imageAnchorX = value;
-            }
-        }
-
-        public int ImageAnchorY
-        {
-            get
-            {
-                return _imageAnchorY;
-            }
-            set
-            {
-                _imageAnchorY = value;
+                _imageAnchor = value;
             }
         }
 

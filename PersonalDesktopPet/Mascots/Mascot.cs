@@ -13,7 +13,6 @@ namespace PersonalDesktopPet.Mascots
 {
     class Mascot
     {
-
         private Stand _stand;
         private Walk _walk;
         private Mascots.Actions.Action _executingAction;

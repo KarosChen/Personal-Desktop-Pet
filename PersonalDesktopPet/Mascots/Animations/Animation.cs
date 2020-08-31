@@ -49,8 +49,8 @@ namespace PersonalDesktopPet.Mascots.Animations
                 newPose.Duration = int.Parse(poseNode.Attributes["Duration"].Value);
                 newPose.VelocityX = int.Parse(poseNode.Attributes["Velocity"].Value.Split(',')[0]);
                 newPose.VelocityY = int.Parse(poseNode.Attributes["Velocity"].Value.Split(',')[1]);
-                newPose.ImageAnchorX = int.Parse(poseNode.Attributes["ImageAnchor"].Value.Split(',')[0]);
-                newPose.ImageAnchorX = int.Parse(poseNode.Attributes["ImageAnchor"].Value.Split(',')[1]);
+                newPose.ImageAnchor = new Point(int.Parse(poseNode.Attributes["ImageAnchor"].Value.Split(',')[0]),
+                                                int.Parse(poseNode.Attributes["ImageAnchor"].Value.Split(',')[1]));
                 FileStream imageStream = File.OpenRead(_currentPath + "/img" + poseNode.Attributes["Image"].Value);
                 newPose.Image = Image.FromStream(imageStream);
                 _poseList.Add(newPose);

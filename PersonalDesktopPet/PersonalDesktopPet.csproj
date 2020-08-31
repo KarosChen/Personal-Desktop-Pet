@@ -58,6 +58,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mascots\Borders\Border.cs" />
+    <Compile Include="Mascots\Borders\Floor.cs" />
+    <Compile Include="Mascots\Borders\LeftWall.cs" />
+    <Compile Include="Mascots\Borders\RightWall.cs" />
+    <Compile Include="Mascots\Enviroment.cs" />
     <Compile Include="Mascots\Mascot.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
