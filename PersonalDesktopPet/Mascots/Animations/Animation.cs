@@ -40,9 +40,8 @@ namespace PersonalDesktopPet.Mascots.Animations
             XmlLoader loader = new XmlLoader();
             loader.ReadActionXML();
             XmlNode actionNode = loader.GetSingleActionNode(actionName);
-            _borderType = actionNode.Attributes["BorderType"].Value;
+            //_borderType = actionNode.Attributes["BorderType"].Value;
             XmlNode animationNode = actionNode.SelectSingleNode("Animation");
-
             foreach (XmlNode poseNode in animationNode.SelectNodes("Pose"))
             {
                 Pose newPose = new Pose();

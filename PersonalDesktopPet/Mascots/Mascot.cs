@@ -13,20 +13,55 @@ namespace PersonalDesktopPet.Mascots
 {
     class Mascot
     {
+        private Point _location;
         private Stand _stand;
         private Walk _walk;
+        private Falling _falling;
         private Mascots.Actions.Action _executingAction;
 
-        public Mascot()
+        public Point Location
         {
+            get
+            {
+                return _location;
+            }
+            set
+            {
+                _location = value;
+            }
+        }
+
+
+        public Mascot(Point initialPoint)
+        {
+            _location = initialPoint;
             _stand = new Stand();
             _walk = new Walk();
-            _executingAction = _walk;
+            _falling = new Falling();
+            _executingAction = _falling;
+            
         }
-      
-        public Mascots.Actions.Action GetExecutingAction()
+
+        public void ExecuteAction()
         {
-            return _executingAction;
+            _executingAction.Execute();
+            _location = new Point(_location.X + _executingAction.GetVelocityX(), _location.Y + _executingAction.GetVelocityY());
+        }
+
+        public Image GetNextImage()
+        {
+            return _executingAction.GetNextImage();
+            
+        }
+
+        public int GetNextDuration()
+        {
+            return _executingAction.GetNextDuration();
+        }
+
+        public string GetBorderType()
+        {
+            return _executingAction.GetBorderType();
         }
     }
 }

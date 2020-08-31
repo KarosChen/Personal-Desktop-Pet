@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mascots\Actions\Action.cs" />
+    <Compile Include="Mascots\Actions\Falling.cs" />
     <Compile Include="Mascots\Actions\Stand.cs" />
     <Compile Include="Mascots\Actions\Walk.cs" />
     <Compile Include="Mascots\Animations\Animation.cs" />
@@ -62,7 +63,7 @@
     <Compile Include="Mascots\Borders\Ceiling.cs" />
     <Compile Include="Mascots\Borders\Floor.cs" />
     <Compile Include="Mascots\Borders\Wall.cs" />
-    <Compile Include="Mascots\Enviroment.cs" />
+    <Compile Include="Mascots\Environment.cs" />
     <Compile Include="Mascots\Mascot.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

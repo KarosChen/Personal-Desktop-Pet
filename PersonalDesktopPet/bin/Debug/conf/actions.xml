@@ -211,7 +211,7 @@
 		<Action Name="Falling" Type="Embedded" Class="com.group_finity.mascot.action.Fall"
 			RegistanceX="0.05" RegistanceY="0.1" Gravity="2">
 			<Animation>
-				<Pose Image="/shime4.png" ImageAnchor="64,128" Velocity="0,0" Duration="250" />
+				<Pose Image="/shime4.png" ImageAnchor="64,128" Velocity="0,5" Duration="2" />
 			</Animation>
 		</Action>
 

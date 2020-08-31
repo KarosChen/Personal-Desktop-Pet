@@ -10,8 +10,10 @@ using System.Drawing;
 
 namespace PersonalDesktopPet.Mascots
 {
-    class Enviroment
+    class Environment
     {
+        private Mascot _mascot;
+
         private Rectangle _screenRectangle;
         private int _monitorCount;
         private Ceiling _ceiling;
@@ -20,13 +22,27 @@ namespace PersonalDesktopPet.Mascots
         private Wall _rightWall;
         private List<Wall> _middleWallList;
         
-        //Create all walls(left, right, middle, top, bottom)
-        public Enviroment()
+        public Mascot Mascot
         {
-            InitializeEnviroment();
+            get
+            {
+                return _mascot;
+            }
+            set
+            {
+                _mascot = value;
+            }
         }
 
-        private void InitializeEnviroment()
+
+        //Create all walls(left, right, middle, top, bottom)
+        public Environment()
+        {
+            InitializeEnvironment();
+            InitializeMascot();
+        }
+
+        private void InitializeEnvironment()
         {
             _screenRectangle = SystemInformation.VirtualScreen;
             _monitorCount = SystemInformation.MonitorCount;
@@ -50,5 +66,9 @@ namespace PersonalDesktopPet.Mascots
             }
         }
         
+        private void InitializeMascot()
+        {
+            _mascot = new Mascot(new Point(new Random().Next(_screenRectangle.X, _screenRectangle.Width + 1), 0));
+        }
     }
 }

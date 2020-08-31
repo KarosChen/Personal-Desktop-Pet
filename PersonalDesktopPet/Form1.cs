@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
-using PersonalDesktopPet.Mascots;
 using MascotActions = PersonalDesktopPet.Mascots.Actions;
+using Mascots = PersonalDesktopPet.Mascots;
 
 namespace PersonalDesktopPet
 {
@@ -19,24 +19,18 @@ namespace PersonalDesktopPet
         private int _mousePreviousY;
         private bool _isDragging = false;
 
-        private MascotActions.Action _executingAction;
+        //private MascotActions.Action _executingAction;
+        Mascots.Environment _mascotEnvironment;
         private Timer _playAnimationTimer;
 
         public desktopPetForm()
         {
             InitializeComponent();
-            System.Console.WriteLine("Primary screen resolution: "
-                                   + SystemInformation.PrimaryMonitorSize);
-            System.Console.WriteLine("Virtual size: "
-                                               + SystemInformation.VirtualScreen);
-            System.Console.WriteLine("Monitors count: "
-                                               + SystemInformation.MonitorCount);
         }
 
         private void desktopPetForm_Load(object sender, EventArgs e)
         {
-            Mascot mascot = new Mascot();
-            _executingAction = mascot.GetExecutingAction();
+            _mascotEnvironment = new Mascots.Environment();
             InitializeTimer();
             _playAnimationTimer.Start();
         }
@@ -50,8 +44,10 @@ namespace PersonalDesktopPet
 
         private void TimerTick(object sender, EventArgs e)
         {
-            Image displayingImage = _executingAction.GetNextImage();
-            _playAnimationTimer.Interval = _executingAction.GetNextDuration() * 20;
+            _mascotEnvironment.Mascot.ExecuteAction();
+            Image displayingImage = _mascotEnvironment.Mascot.GetNextImage();
+            _playAnimationTimer.Interval = _mascotEnvironment.Mascot.GetNextDuration();
+            this.Location = _mascotEnvironment.Mascot.Location;
             //The range is a test function to set form and pictureBox width and height 
             this.Width = displayingImage.Width;
             this.Height = displayingImage.Height;

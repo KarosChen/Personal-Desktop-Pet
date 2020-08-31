@@ -33,15 +33,29 @@ namespace PersonalDesktopPet.Mascots.Actions
             _animation = new Animation(typeArray[typeArray.Length - 1]);
         }
 
-        public Image GetNextImage()
+        public void Execute()
         {
             _nextPose = _animation.GetNextPose();
+        }
+
+        public Image GetNextImage()
+        {
             return _nextPose.Image;
         }
 
         public int GetNextDuration()
         {
             return _nextPose.Duration;
+        }
+
+        public int GetVelocityX()
+        {
+            return _nextPose.VelocityX;
+        }
+
+        public int GetVelocityY()
+        {
+            return _nextPose.VelocityY;
         }
 
         public string GetBorderType()
