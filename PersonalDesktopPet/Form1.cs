@@ -61,13 +61,21 @@ namespace PersonalDesktopPet
         /// </summary>
         /// <param name="sender"> mascotPictureBox </param>
         /// <param name="mouse"> mascotEvent </param>
+        /// mouse X and Y is referenced to location of Form
+        /// 
         private void mascotPictureBox_MouseDown(object sender, MouseEventArgs mouse)
         {
             if (mouse.Button == MouseButtons.Left)
             {
-                _mousePreviousX = mouse.X;
-                _mousePreviousY = mouse.Y;
+                //Let mouse locate at (64, 0) in image
+                _mousePreviousX = 64;
+                _mousePreviousY = 0;
                 _isDragging = true;
+                //Let mascot stop and execute stand action
+                this.Left += (mouse.X - _mousePreviousX);
+                this.Top += (mouse.Y - _mousePreviousY);
+                _mascotEnvironment.Mascot.SetAction(Mascots.Mascot.ActionEnum.Stand);
+                _mascotEnvironment.Mascot.Location = new Point(this.Left, this.Top);
             }
         }
 
@@ -77,12 +85,19 @@ namespace PersonalDesktopPet
             {
                 this.Left += (mouse.X - _mousePreviousX);
                 this.Top += (mouse.Y - _mousePreviousY);
+                //Set mascot location
+                _mascotEnvironment.Mascot.Location = new Point(this.Left, this.Top);
             }
         }
 
         private void mascotPictureBox_MouseUp(object sender, MouseEventArgs mouse)
         {
             _isDragging = false;
+            if (_mascotEnvironment.IsNotOnBorder())
+            {
+                _mascotEnvironment.Mascot.SetAction(Mascots.Mascot.ActionEnum.Falling);
+                _mascotEnvironment.Mascot.Location = new Point(this.Left, this.Top);
+            }
         }
     }
 }

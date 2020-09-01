@@ -21,7 +21,7 @@ namespace PersonalDesktopPet.Mascots
         private Wall _leftWall;
         private Wall _rightWall;
         private List<Wall> _middleWallList;
-        
+
         public Mascot Mascot
         {
             get
@@ -34,8 +34,7 @@ namespace PersonalDesktopPet.Mascots
             }
         }
 
-
-        //Create all walls(left, right, middle, top, bottom)
+        //Create Walls and Mascot
         public Environment()
         {
             InitializeEnvironment();
@@ -69,6 +68,19 @@ namespace PersonalDesktopPet.Mascots
         private void InitializeMascot()
         {
             _mascot = new Mascot(new Point(new Random().Next(_screenRectangle.X, _screenRectangle.Width + 1), 0));
+        }
+
+        public bool IsNotOnBorder()
+        {
+            Point cursorLocation = Point.Add(_mascot.Location, new Size(64, 0));
+            if (!_floor.IsOn(cursorLocation) && !_ceiling.IsOn(cursorLocation) && !_leftWall.IsOn(cursorLocation) && !_rightWall.IsOn(cursorLocation))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

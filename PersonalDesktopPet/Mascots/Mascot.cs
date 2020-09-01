@@ -14,10 +14,19 @@ namespace PersonalDesktopPet.Mascots
     class Mascot
     {
         private Point _location;
-        private Stand _stand;
+        /*private Stand _stand;
         private Walk _walk;
-        private Falling _falling;
-        private Mascots.Actions.Action _executingAction;
+        private Falling _falling;*/
+        private Actions.Action _executingAction;
+        private List<Actions.Action> _actionList;
+
+        public enum ActionEnum
+        {
+            Stand,
+            Walk,
+            Falling
+        }
+
 
         public Point Location
         {
@@ -34,12 +43,17 @@ namespace PersonalDesktopPet.Mascots
 
         public Mascot(Point initialPoint)
         {
+            _actionList = new List<Actions.Action>();
             _location = initialPoint;
-            _stand = new Stand();
-            _walk = new Walk();
-            _falling = new Falling();
-            _executingAction = _falling;
-            
+            _actionList.Add(new Stand());
+            _actionList.Add(new Walk());
+            _actionList.Add(new Falling());
+            SetAction(ActionEnum.Falling);
+        }
+
+        public void SetAction(ActionEnum actionNumber)
+        {
+            _executingAction = _actionList[(int)actionNumber];
         }
 
         public void ExecuteAction()
