@@ -24,7 +24,8 @@ namespace PersonalDesktopPet.Mascots
         {
             Stand,
             Walk,
-            Falling
+            Falling,
+            GrabWall
         }
 
 
@@ -48,6 +49,7 @@ namespace PersonalDesktopPet.Mascots
             _actionList.Add(new Stand());
             _actionList.Add(new Walk());
             _actionList.Add(new Falling());
+            _actionList.Add(new GrabWall());
             SetAction(ActionEnum.Falling);
         }
 

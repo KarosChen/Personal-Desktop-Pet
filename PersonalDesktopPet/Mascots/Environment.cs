@@ -62,9 +62,8 @@ namespace PersonalDesktopPet.Mascots
             }
         }
 
-        public bool IsNotOnBorder(Mascot mascot)
+        public bool IsNotOnBorder(Point cursorLocation)
         {
-            Point cursorLocation = Point.Add(mascot.Location, new Size(64, 0));
             if (!_floor.IsOn(cursorLocation) && !_ceiling.IsOn(cursorLocation) && !_leftWall.IsOn(cursorLocation) && !_rightWall.IsOn(cursorLocation))
             {
                 return true;
@@ -75,11 +74,14 @@ namespace PersonalDesktopPet.Mascots
             }
         }
 
-        public bool IsOnFloor(Mascot mascot)
+        public bool IsOnFloor(Point mascotAnchor)
         {
-            Point imageAnchor = mascot.GetNextImageAnchor();
-            Point mascotAnchor = new Point(mascot.Location.X + imageAnchor.X, mascot.Location.Y + imageAnchor.Y);
             return _floor.IsOn(mascotAnchor);
+        }
+
+        public bool IsOnLeftWall(Point cursorLocation)
+        {
+            return _leftWall.IsOn(cursorLocation);
         }
     }
 }
