@@ -62,6 +62,7 @@
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Olive;
             this.Load += new System.EventHandler(this.desktopPetForm_Load);
+            this.LocationChanged += new System.EventHandler(this.desktopPetForm_LocationChanged);
             ((System.ComponentModel.ISupportInitialize)(this.mascotPictureBox)).EndInit();
             this.ResumeLayout(false);
 

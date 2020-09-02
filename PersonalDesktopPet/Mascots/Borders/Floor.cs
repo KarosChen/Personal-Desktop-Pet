@@ -17,7 +17,7 @@ namespace PersonalDesktopPet.Mascots.Borders
 
         public override bool IsOn(Point mascot)
         {
-            if (mascot.Y >= EndingPoint.Y - 128 && mascot.Y < EndingPoint.Y - 64)
+            if (mascot.Y >= EndingPoint.Y - 8 && mascot.Y <= EndingPoint.Y )
             {
                 return true;
             }

@@ -12,8 +12,6 @@ namespace PersonalDesktopPet.Mascots
 {
     class Environment
     {
-        private Mascot _mascot;
-
         private Rectangle _screenRectangle;
         private int _monitorCount;
         private Ceiling _ceiling;
@@ -22,15 +20,15 @@ namespace PersonalDesktopPet.Mascots
         private Wall _rightWall;
         private List<Wall> _middleWallList;
 
-        public Mascot Mascot
+        public Rectangle ScreenRectangle
         {
             get
             {
-                return _mascot;
+                return _screenRectangle;
             }
             set
             {
-                _mascot = value;
+                _screenRectangle = value;
             }
         }
 
@@ -38,7 +36,6 @@ namespace PersonalDesktopPet.Mascots
         public Environment()
         {
             InitializeEnvironment();
-            InitializeMascot();
         }
 
         private void InitializeEnvironment()
@@ -64,15 +61,10 @@ namespace PersonalDesktopPet.Mascots
                 _middleWallList.Add(middleWall);
             }
         }
-        
-        private void InitializeMascot()
-        {
-            _mascot = new Mascot(new Point(new Random().Next(_screenRectangle.X, _screenRectangle.Width + 1), 0));
-        }
 
-        public bool IsNotOnBorder()
+        public bool IsNotOnBorder(Mascot mascot)
         {
-            Point cursorLocation = Point.Add(_mascot.Location, new Size(64, 0));
+            Point cursorLocation = Point.Add(mascot.Location, new Size(64, 0));
             if (!_floor.IsOn(cursorLocation) && !_ceiling.IsOn(cursorLocation) && !_leftWall.IsOn(cursorLocation) && !_rightWall.IsOn(cursorLocation))
             {
                 return true;
@@ -81,6 +73,13 @@ namespace PersonalDesktopPet.Mascots
             {
                 return false;
             }
+        }
+
+        public bool IsOnFloor(Mascot mascot)
+        {
+            Point imageAnchor = mascot.GetNextImageAnchor();
+            Point mascotAnchor = new Point(mascot.Location.X + imageAnchor.X, mascot.Location.Y + imageAnchor.Y);
+            return _floor.IsOn(mascotAnchor);
         }
     }
 }

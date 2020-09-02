@@ -77,5 +77,10 @@ namespace PersonalDesktopPet.Mascots
         {
             return _executingAction.GetBorderType();
         }
+
+        public Point GetNextImageAnchor()
+        {
+            return _executingAction.GetImageAnchor();
+        }
     }
 }

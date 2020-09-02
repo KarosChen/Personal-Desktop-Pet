@@ -58,6 +58,11 @@ namespace PersonalDesktopPet.Mascots.Actions
             return _nextPose.VelocityY;
         }
 
+        public Point GetImageAnchor()
+        {
+            return _nextPose.ImageAnchor;
+        }
+
         public string GetBorderType()
         {
             return _animation.BorderType;

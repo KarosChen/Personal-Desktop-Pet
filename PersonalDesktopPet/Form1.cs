@@ -18,9 +18,10 @@ namespace PersonalDesktopPet
         private int _mousePreviousX;
         private int _mousePreviousY;
         private bool _isDragging = false;
+        private bool _isFalling = false;
 
-        //private MascotActions.Action _executingAction;
         Mascots.Environment _mascotEnvironment;
+        Mascots.Mascot _mascot;
         private Timer _playAnimationTimer;
 
         public desktopPetForm()
@@ -32,6 +33,8 @@ namespace PersonalDesktopPet
         private void desktopPetForm_Load(object sender, EventArgs e)
         {
             _mascotEnvironment = new Mascots.Environment();
+            _mascot = new Mascots.Mascot(new Point(new Random().Next(_mascotEnvironment.ScreenRectangle.X, _mascotEnvironment.ScreenRectangle.Width + 1), 0));
+            _isFalling = true;
             InitializeTimer();
             _playAnimationTimer.Start();
         }
@@ -45,16 +48,27 @@ namespace PersonalDesktopPet
 
         private void TimerTick(object sender, EventArgs e)
         {
-            _mascotEnvironment.Mascot.ExecuteAction();
-            Image displayingImage = _mascotEnvironment.Mascot.GetNextImage();
-            _playAnimationTimer.Interval = _mascotEnvironment.Mascot.GetNextDuration();
-            this.Location = _mascotEnvironment.Mascot.Location;
+            _mascot.ExecuteAction();
+            Image displayingImage = _mascot.GetNextImage();
+            _playAnimationTimer.Interval = _mascot.GetNextDuration();
+            this.Location = _mascot.Location;
             //The range is a test function to set form and pictureBox width and height 
             this.Width = displayingImage.Width;
             this.Height = displayingImage.Height;
             mascotPictureBox.Width = displayingImage.Width;
             mascotPictureBox.Height = displayingImage.Height;
             mascotPictureBox.Image = displayingImage;
+        }
+
+        private void desktopPetForm_LocationChanged(object sender, EventArgs e)
+        {
+            if (_isFalling)
+            {
+                if (_mascotEnvironment.IsOnFloor(_mascot))
+                {
+                    _mascot.SetAction(Mascots.Mascot.ActionEnum.Stand);
+                }
+            }
         }
 
         /// <summary>
@@ -68,6 +82,7 @@ namespace PersonalDesktopPet
         {
             if (mouse.Button == MouseButtons.Left)
             {
+                _isFalling = false;
                 //Let mouse locate at (64, 0) in image
                 _mousePreviousX = 64;
                 _mousePreviousY = 0;
@@ -75,8 +90,8 @@ namespace PersonalDesktopPet
                 //Let mascot stop and execute stand action
                 this.Left += (mouse.X - _mousePreviousX);
                 this.Top += (mouse.Y - _mousePreviousY);
-                _mascotEnvironment.Mascot.SetAction(Mascots.Mascot.ActionEnum.Stand);
-                _mascotEnvironment.Mascot.Location = new Point(this.Left, this.Top);
+                _mascot.SetAction(Mascots.Mascot.ActionEnum.Stand);
+                _mascot.Location = new Point(this.Left, this.Top);
             }
         }
 
@@ -87,17 +102,18 @@ namespace PersonalDesktopPet
                 this.Left += (mouse.X - _mousePreviousX);
                 this.Top += (mouse.Y - _mousePreviousY);
                 //Set mascot location
-                _mascotEnvironment.Mascot.Location = new Point(this.Left, this.Top);
+                _mascot.Location = new Point(this.Left, this.Top);
             }
         }
 
         private void mascotPictureBox_MouseUp(object sender, MouseEventArgs mouse)
         {
             _isDragging = false;
-            if (_mascotEnvironment.IsNotOnBorder())
+            if (_mascotEnvironment.IsNotOnBorder(_mascot))
             {
-                _mascotEnvironment.Mascot.SetAction(Mascots.Mascot.ActionEnum.Falling);
-                _mascotEnvironment.Mascot.Location = new Point(this.Left, this.Top);
+                _mascot.SetAction(Mascots.Mascot.ActionEnum.Falling);
+                _mascot.Location = new Point(this.Left, this.Top);
+                _isFalling = true;
             }
         }
     }
