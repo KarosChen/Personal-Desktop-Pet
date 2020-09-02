@@ -13,7 +13,7 @@ using Mascots = PersonalDesktopPet.Mascots;
 
 namespace PersonalDesktopPet
 {
-    public partial class desktopPetForm : Form
+    public partial class desktopPetForm : TransparentForm
     {
         private int _mousePreviousX;
         private int _mousePreviousY;
@@ -25,6 +25,7 @@ namespace PersonalDesktopPet
 
         public desktopPetForm()
         {
+            this.AddBackgroundImage(new Bitmap(128, 128));
             InitializeComponent();
         }
 
