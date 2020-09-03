@@ -64,13 +64,16 @@ namespace PersonalDesktopPet
         {
             if (_isFalling)
             {
-                Point imageAnchor = _mascot.GetNextImageAnchor();
-                Point mascotAnchor = new Point(_mascot.Location.X + imageAnchor.X, _mascot.Location.Y + imageAnchor.Y);
-                if (_mascotEnvironment.IsOnFloor(mascotAnchor))
+                if (_mascotEnvironment.IsOnFloor(_mascot.ImageAnchorLocation))
                 {
                     _mascot.SetAction(Mascots.Mascot.ActionEnum.Stand);
                 }
+                else if (_mascotEnvironment.IsUnderFloor(_mascot.ImageAnchorLocation))
+                {
+                    this.Top = 0;
+                }
             }
+            _mascot.Location = new Point(this.Left, this.Top);
         }
 
         /// <summary>
@@ -111,17 +114,15 @@ namespace PersonalDesktopPet
         private void mascotPictureBox_MouseUp(object sender, MouseEventArgs mouse)
         {
             _isDragging = false;
-            if (_mascotEnvironment.IsOnLeftWall(Point.Add(_mascot.Location, new Size(64, 0))))
+            if (_mascotEnvironment.IsOnLeftWall(_mascot.HeadLocation))
             {
                 _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabWall);
-                _mascot.Location = new Point(this.Left, this.Top);
             }
-            else if (_mascotEnvironment.IsOnRightWall(Point.Add(_mascot.Location, new Size(64, 0))))
+            else if (_mascotEnvironment.IsOnRightWall(_mascot.HeadLocation))
             {
                 _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabWall);
-                _mascot.Location = new Point(this.Left, this.Top);
             }
-            else if (_mascotEnvironment.IsOnCeiling(Point.Add(_mascot.Location, new Size(64, 0))))
+            else if (_mascotEnvironment.IsOnCeiling(_mascot.HeadLocation))
             {
                 _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabCeiling);
                 Point imageAnchor = _mascot.GetNextImageAnchor();
@@ -131,7 +132,6 @@ namespace PersonalDesktopPet
             else
             {
                 _mascot.SetAction(Mascots.Mascot.ActionEnum.Falling);
-                _mascot.Location = new Point(this.Left, this.Top);
                 _isFalling = true;
             }
         }

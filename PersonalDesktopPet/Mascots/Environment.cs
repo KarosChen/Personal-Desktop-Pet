@@ -64,24 +64,29 @@ namespace PersonalDesktopPet.Mascots
             }
         }
 
-        public bool IsOnFloor(Point mascotAnchor)
+        public bool IsOnFloor(Point location)
         {
-            return _floor.IsOn(mascotAnchor);
+            return _floor.IsOn(location);
         }
 
-        public bool IsOnLeftWall(Point cursorLocation)
+        public bool IsOnLeftWall(Point location)
         {
-            return _leftWall.IsOn(cursorLocation);
+            return _leftWall.IsOn(location);
         }
 
-        public bool IsOnRightWall(Point cursorLocation)
+        public bool IsOnRightWall(Point location)
         {
-            return _rightWall.IsOn(cursorLocation);
+            return _rightWall.IsOn(location);
         }
 
-        public bool IsOnCeiling(Point cursorLocation)
+        public bool IsOnCeiling(Point location)
         {
-            return _ceiling.IsOn(cursorLocation);
+            return _ceiling.IsOn(location);
+        }
+
+        public bool IsUnderFloor(Point location)
+        {
+            return _floor.IsUnder(location);
         }
     }
 }

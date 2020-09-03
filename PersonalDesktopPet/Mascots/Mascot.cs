@@ -16,9 +16,6 @@ namespace PersonalDesktopPet.Mascots
         private Point _location;
         private Point _headLocation;
         private Point _imageAnchorLocation;
-        /*private Stand _stand;
-        private Walk _walk;
-        private Falling _falling;*/
         private Actions.Action _executingAction;
         private List<Actions.Action> _actionList;
 
@@ -48,7 +45,9 @@ namespace PersonalDesktopPet.Mascots
         {
             get
             {
-                return Point.Add(_location, new Size(_executingAction.GetNextImage().Width / 2, 0));
+                int width = _executingAction.GetNextImage().Width;
+                _headLocation = new Point(_location.X + width / 2, _location.Y);
+                return _headLocation;
             }
             set
             {
@@ -61,11 +60,12 @@ namespace PersonalDesktopPet.Mascots
             get
             {
                 Point imageAnchor = _executingAction.GetImageAnchor();
-                return Point.Add(_location, new Size(imageAnchor.X, imageAnchor.Y));
+                _imageAnchorLocation = new Point(_location.X + imageAnchor.X, _location.Y + imageAnchor.Y);
+                return _imageAnchorLocation;
             }
             set
             {
-                _location = value;
+                _imageAnchorLocation = value;
             }
         }
 

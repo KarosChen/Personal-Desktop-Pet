@@ -26,5 +26,17 @@ namespace PersonalDesktopPet.Mascots.Borders
                 return false;
             }
         }
+
+        public bool IsUnder(Point mascot)
+        {
+            if (mascot.Y > EndingPoint.Y + 128)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
