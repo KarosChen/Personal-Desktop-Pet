@@ -8,16 +8,16 @@ using System.Windows.Forms;
 
 namespace PersonalDesktopPet.Mascots.Borders
 {
-    class Wall : Border
+    class LeftWall : Border
     {
-        public Wall(Point startingPoint, Point endingPoint) : base(startingPoint, endingPoint)
+        public LeftWall(Point startingPoint, Point endingPoint) : base(startingPoint, endingPoint)
         {
 
         }
 
         public override bool IsOn(Point mascot)
         {
-            if (mascot.X == StartingPoint.X && mascot.Y < EndingPoint.Y - 128 && mascot.Y > 0)
+            if (mascot.X <= StartingPoint.X + 5 && mascot.X >= StartingPoint.X && mascot.Y < EndingPoint.Y - 128 && mascot.Y > 0)
             {
                 return true;
             }

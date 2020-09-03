@@ -56,15 +56,5 @@ namespace PersonalDesktopPet.Mascots.Animations
             }
             return null;
         }
-        /*
-        public XmlNode GetSingleActionNode()
-        {
-            return _singleActionNodes;
-        }
-        public XmlNode GetSequenceActionNode()
-        {
-            return _sequenceActionNodes;
-        }
-        */
     }
 }

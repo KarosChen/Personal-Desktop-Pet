@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Mascot>
-
+  
 	<ActionList Type="Single">
 		<Action Name="Look" Type="Embedded" Class="com.group_finity.mascot.action.Look" />
 		<Action Name="Offset" Type="Embedded" Class="com.group_finity.mascot.action.Offset" />

@@ -16,9 +16,9 @@ namespace PersonalDesktopPet.Mascots
         private int _monitorCount;
         private Ceiling _ceiling;
         private Floor _floor;
-        private Wall _leftWall;
-        private Wall _rightWall;
-        private List<Wall> _middleWallList;
+        private LeftWall _leftWall;
+        private RightWall _rightWall;
+        private List<Border> _middleWallList;
 
         public Rectangle ScreenRectangle
         {
@@ -51,26 +51,16 @@ namespace PersonalDesktopPet.Mascots
 
             _ceiling = new Ceiling(new Point(startingX, startingY), new Point(singleWidth * _monitorCount, startingY));
             _floor = new Floor(new Point(startingX, singleHeight), new Point(singleWidth * _monitorCount, singleHeight));
-            _leftWall = new Wall(new Point(startingX, startingY), new Point(startingX, singleHeight));
-            _rightWall = new Wall(new Point(singleWidth * _monitorCount, startingY), new Point(singleWidth * _monitorCount, singleHeight));
-            _middleWallList = new List<Wall>();
+            _leftWall = new LeftWall(new Point(startingX, startingY), new Point(startingX, singleHeight));
+            _rightWall = new RightWall(new Point(singleWidth * _monitorCount, startingY), new Point(singleWidth * _monitorCount, singleHeight));
+            _middleWallList = new List<Border>();
            
             for (int i = 1; i <= _monitorCount - 1; i++)
             {
-                Wall middleWall = new Wall(new Point(i * singleWidth, startingY), new Point(i * singleWidth, singleHeight));
-                _middleWallList.Add(middleWall);
-            }
-        }
-
-        public bool IsNotOnBorder(Point cursorLocation)
-        {
-            if (!_floor.IsOn(cursorLocation) && !_ceiling.IsOn(cursorLocation) && !_leftWall.IsOn(cursorLocation) && !_rightWall.IsOn(cursorLocation))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
+                RightWall rightMiddleWall = new RightWall(new Point(i * singleWidth, startingY), new Point(i * singleWidth, singleHeight));
+                LeftWall leftMiddleWall = new LeftWall(new Point(i * singleWidth, startingY), new Point(i * singleWidth, singleHeight));
+                _middleWallList.Add(rightMiddleWall);
+                _middleWallList.Add(leftMiddleWall);
             }
         }
 
@@ -82,6 +72,16 @@ namespace PersonalDesktopPet.Mascots
         public bool IsOnLeftWall(Point cursorLocation)
         {
             return _leftWall.IsOn(cursorLocation);
+        }
+
+        public bool IsOnRightWall(Point cursorLocation)
+        {
+            return _rightWall.IsOn(cursorLocation);
+        }
+
+        public bool IsOnCeiling(Point cursorLocation)
+        {
+            return _ceiling.IsOn(cursorLocation);
         }
     }
 }

@@ -111,16 +111,28 @@ namespace PersonalDesktopPet
         private void mascotPictureBox_MouseUp(object sender, MouseEventArgs mouse)
         {
             _isDragging = false;
-            if (_mascotEnvironment.IsNotOnBorder(Point.Add(_mascot.Location, new Size(64, 0))))
+            if (_mascotEnvironment.IsOnLeftWall(Point.Add(_mascot.Location, new Size(64, 0))))
+            {
+                _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabWall);
+                _mascot.Location = new Point(this.Left, this.Top);
+            }
+            else if (_mascotEnvironment.IsOnRightWall(Point.Add(_mascot.Location, new Size(64, 0))))
+            {
+                _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabWall);
+                _mascot.Location = new Point(this.Left, this.Top);
+            }
+            else if (_mascotEnvironment.IsOnCeiling(Point.Add(_mascot.Location, new Size(64, 0))))
+            {
+                _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabCeiling);
+                Point imageAnchor = _mascot.GetNextImageAnchor();
+                Point mascotAnchor = new Point(this.Left, this.Top - imageAnchor.Y);
+                _mascot.Location = mascotAnchor;
+            }
+            else
             {
                 _mascot.SetAction(Mascots.Mascot.ActionEnum.Falling);
                 _mascot.Location = new Point(this.Left, this.Top);
                 _isFalling = true;
-            }
-            else if (_mascotEnvironment.IsOnLeftWall(Point.Add(_mascot.Location, new Size(64, 0))))
-            {
-                _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabWall);
-                _mascot.Location = new Point(this.Left, this.Top);
             }
         }
     }

@@ -31,11 +31,13 @@ namespace PersonalDesktopPet.Mascots.Actions
         {
             string[] typeArray = this.GetType().ToString().Split('.');
             _animation = new Animation(typeArray[typeArray.Length - 1]);
+            _nextPose = _animation.DisplayingPose;
         }
 
         public void Execute()
         {
-            _nextPose = _animation.GetNextPose();
+            _animation.SetNextPose();
+            _nextPose = _animation.DisplayingPose;
         }
 
         public Image GetNextImage()

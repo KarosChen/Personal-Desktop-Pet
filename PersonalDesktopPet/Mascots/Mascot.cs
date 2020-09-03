@@ -14,6 +14,8 @@ namespace PersonalDesktopPet.Mascots
     class Mascot
     {
         private Point _location;
+        private Point _headLocation;
+        private Point _imageAnchorLocation;
         /*private Stand _stand;
         private Walk _walk;
         private Falling _falling;*/
@@ -25,7 +27,8 @@ namespace PersonalDesktopPet.Mascots
             Stand,
             Walk,
             Falling,
-            GrabWall
+            GrabWall,
+            GrabCeiling
         }
 
 
@@ -41,6 +44,30 @@ namespace PersonalDesktopPet.Mascots
             }
         }
 
+        public Point HeadLocation
+        {
+            get
+            {
+                return Point.Add(_location, new Size(_executingAction.GetNextImage().Width / 2, 0));
+            }
+            set
+            {
+                _headLocation = value;
+            }
+        }
+
+        public Point ImageAnchorLocation
+        {
+            get
+            {
+                Point imageAnchor = _executingAction.GetImageAnchor();
+                return Point.Add(_location, new Size(imageAnchor.X, imageAnchor.Y));
+            }
+            set
+            {
+                _location = value;
+            }
+        }
 
         public Mascot(Point initialPoint)
         {
@@ -50,6 +77,7 @@ namespace PersonalDesktopPet.Mascots
             _actionList.Add(new Walk());
             _actionList.Add(new Falling());
             _actionList.Add(new GrabWall());
+            _actionList.Add(new GrabCeiling());
             SetAction(ActionEnum.Falling);
         }
 
@@ -66,8 +94,7 @@ namespace PersonalDesktopPet.Mascots
 
         public Image GetNextImage()
         {
-            return _executingAction.GetNextImage();
-            
+            return _executingAction.GetNextImage(); 
         }
 
         public int GetNextDuration()

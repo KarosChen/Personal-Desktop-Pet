@@ -15,6 +15,7 @@ namespace PersonalDesktopPet.Mascots.Animations
         private string _borderType;
         private List<Pose> _poseList;
         private int _poseIndex = 0;
+        Pose _displayingPose;
         private string _currentPath = Directory.GetCurrentDirectory();
 
         public string BorderType
@@ -29,10 +30,23 @@ namespace PersonalDesktopPet.Mascots.Animations
             }
         }
 
+        public Pose DisplayingPose
+        {
+            get
+            {
+                return _displayingPose;
+            }
+            set
+            {
+                _displayingPose = value;
+            }
+        }
+
         public Animation(string actionName)
         {
             _poseList = new List<Pose>();
             AddAllPose(actionName);
+            _displayingPose = _poseList[_poseIndex];
         }
 
         private void AddAllPose(string actionName)
@@ -56,20 +70,17 @@ namespace PersonalDesktopPet.Mascots.Animations
             }
         }
 
-        public Pose GetNextPose()
+        public void SetNextPose()
         {
-            Pose displayingPose;
             if (_poseIndex < _poseList.Count)
             {
-                displayingPose = _poseList[_poseIndex++];
+                _displayingPose = _poseList[_poseIndex++];
             }
             else
             {
                 _poseIndex = 0;
-                displayingPose = _poseList[_poseIndex++];
+                _displayingPose = _poseList[_poseIndex++];
             }
-
-            return displayingPose;
         }
     }
 }
