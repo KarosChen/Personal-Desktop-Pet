@@ -66,7 +66,7 @@ namespace PersonalDesktopPet
             {
                 if (_mascotEnvironment.IsOnFloor(_mascot.ImageAnchorLocation))
                 {
-                    _mascot.SetAction(Mascots.Mascot.ActionEnum.Stand);
+                    _mascot.SetAction(Mascots.Mascot.ActionEnum.Stand, false);
                 }
                 else if (_mascotEnvironment.IsUnderFloor(_mascot.ImageAnchorLocation))
                 {
@@ -95,7 +95,7 @@ namespace PersonalDesktopPet
                 //Let mascot stop and execute stand action
                 this.Left += (mouse.X - _mousePreviousX);
                 this.Top += (mouse.Y - _mousePreviousY);
-                _mascot.SetAction(Mascots.Mascot.ActionEnum.Stand);
+                _mascot.SetAction(Mascots.Mascot.ActionEnum.Stand, false);
                 _mascot.Location = new Point(this.Left, this.Top);
             }
         }
@@ -116,22 +116,22 @@ namespace PersonalDesktopPet
             _isDragging = false;
             if (_mascotEnvironment.IsOnLeftWall(_mascot.HeadLocation))
             {
-                _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabWall);
+                _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabWall, false);
             }
             else if (_mascotEnvironment.IsOnRightWall(_mascot.HeadLocation))
             {
-                _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabWall);
+                _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabWall, true);
             }
             else if (_mascotEnvironment.IsOnCeiling(_mascot.HeadLocation))
             {
-                _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabCeiling);
+                _mascot.SetAction(Mascots.Mascot.ActionEnum.GrabCeiling, false);
                 Point imageAnchor = _mascot.GetNextImageAnchor();
                 Point mascotAnchor = new Point(this.Left, this.Top - imageAnchor.Y);
                 _mascot.Location = mascotAnchor;
             }
             else
             {
-                _mascot.SetAction(Mascots.Mascot.ActionEnum.Falling);
+                _mascot.SetAction(Mascots.Mascot.ActionEnum.Falling, false);
                 _isFalling = true;
             }
         }

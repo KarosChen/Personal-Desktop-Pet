@@ -14,6 +14,7 @@ namespace PersonalDesktopPet.Mascots.Actions
     {
         private Animation _animation;
         private Pose _nextPose;
+        private bool _isFliped = false;
         
         public Animation Animation
         {
@@ -24,6 +25,18 @@ namespace PersonalDesktopPet.Mascots.Actions
             set
             {
                 _animation = value;
+            }
+        }
+
+        public bool IsFliped
+        {
+            get
+            {
+                return _isFliped;
+            }
+            set
+            {
+                _isFliped = value;
             }
         }
 
@@ -42,7 +55,16 @@ namespace PersonalDesktopPet.Mascots.Actions
 
         public Image GetNextImage()
         {
-            return _nextPose.Image;
+            if (IsFliped)
+            {
+                Image flipedImage = (Image)_nextPose.Image.Clone();
+                flipedImage.RotateFlip(RotateFlipType.Rotate180FlipY);
+                return flipedImage;
+            }
+            else
+            {
+                return _nextPose.Image;
+            }
         }
 
         public int GetNextDuration()

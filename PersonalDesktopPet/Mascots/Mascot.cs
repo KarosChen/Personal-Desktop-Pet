@@ -78,12 +78,13 @@ namespace PersonalDesktopPet.Mascots
             _actionList.Add(new Falling());
             _actionList.Add(new GrabWall());
             _actionList.Add(new GrabCeiling());
-            SetAction(ActionEnum.Falling);
+            SetAction(ActionEnum.Falling, false);
         }
 
-        public void SetAction(ActionEnum actionNumber)
+        public void SetAction(ActionEnum actionNumber, bool isFliped)
         {
             _executingAction = _actionList[(int)actionNumber];
+            _executingAction.IsFliped = isFliped;
         }
 
         public void ExecuteAction()
