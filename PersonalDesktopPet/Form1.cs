@@ -23,6 +23,7 @@ namespace PersonalDesktopPet
         Mascots.Environment _mascotEnvironment;
         Mascots.Mascot _mascot;
         private Timer _playAnimationTimer;
+        private System.Timers.Timer _automaticModeTimer;
 
         public desktopPetForm()
         {
@@ -35,18 +36,26 @@ namespace PersonalDesktopPet
             _mascotEnvironment = new Mascots.Environment();
             _mascot = new Mascots.Mascot(new Point(new Random().Next(_mascotEnvironment.ScreenRectangle.X, _mascotEnvironment.ScreenRectangle.Width + 1), 0));
             _isFalling = true;
-            InitializeTimer();
+            InitializePlayAnimationTimer();
+            InitializeAutomaticModeTimer();
             _playAnimationTimer.Start();
         }
 
-        private void InitializeTimer()
+        private void InitializePlayAnimationTimer()
         {
             _playAnimationTimer = new Timer();
             _playAnimationTimer.Tick += null;
-            _playAnimationTimer.Tick += new EventHandler(TimerTick);
+            _playAnimationTimer.Tick += new EventHandler(playAnimationTimerTick);
         }
 
-        private void TimerTick(object sender, EventArgs e)
+        private void InitializeAutomaticModeTimer()
+        {
+            _automaticModeTimer = new System.Timers.Timer(4000);
+            _automaticModeTimer.Elapsed += new System.Timers.ElapsedEventHandler(automaticModeTimerTick);
+        }
+
+
+        private void playAnimationTimerTick(object sender, EventArgs e)
         {
             _mascot.ExecuteAction();
             Image displayingImage = _mascot.GetNextImage();
@@ -58,6 +67,12 @@ namespace PersonalDesktopPet
             mascotPictureBox.Width = displayingImage.Width;
             mascotPictureBox.Height = displayingImage.Height;
             mascotPictureBox.Image = displayingImage;
+        }
+
+        private void automaticModeTimerTick(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            _mascot.IsAutomaticMode = true;
+            _mascot.ExecuteAutomaticMode();
         }
 
         private void desktopPetForm_LocationChanged(object sender, EventArgs e)
@@ -87,6 +102,8 @@ namespace PersonalDesktopPet
         {
             if (mouse.Button == MouseButtons.Left)
             {
+                _automaticModeTimer.Stop();
+                _mascot.IsAutomaticMode = false;
                 _isFalling = false;
                 //Let mouse locate at (64, 0) in image
                 _mousePreviousX = 64;
@@ -134,6 +151,7 @@ namespace PersonalDesktopPet
                 _mascot.SetAction(Mascots.Mascot.ActionEnum.Falling, false);
                 _isFalling = true;
             }
+            _automaticModeTimer.Start();
         }
     }
 }

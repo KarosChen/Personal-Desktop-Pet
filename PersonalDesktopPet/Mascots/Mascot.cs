@@ -18,6 +18,7 @@ namespace PersonalDesktopPet.Mascots
         private Point _imageAnchorLocation;
         private Actions.Action _executingAction;
         private List<Actions.Action> _actionList;
+        private bool _isAutomaticMode;
 
         public enum ActionEnum
         {
@@ -27,7 +28,6 @@ namespace PersonalDesktopPet.Mascots
             GrabWall,
             GrabCeiling
         }
-
 
         public Point Location
         {
@@ -69,8 +69,21 @@ namespace PersonalDesktopPet.Mascots
             }
         }
 
+        public bool IsAutomaticMode
+        {
+            get
+            {
+                return _isAutomaticMode;
+            }
+            set
+            {
+                _isAutomaticMode = value;
+            }
+        }
+
         public Mascot(Point initialPoint)
         {
+            _isAutomaticMode = false;
             _actionList = new List<Actions.Action>();
             _location = initialPoint;
             _actionList.Add(new Stand());
@@ -85,6 +98,22 @@ namespace PersonalDesktopPet.Mascots
         {
             _executingAction = _actionList[(int)actionNumber];
             _executingAction.IsFliped = isFliped;
+        }
+
+        public void SetRandomAction(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            if (_isAutomaticMode)
+            {
+
+            }
+            else
+            {
+            }
+        }
+
+        public void ExecuteAutomaticMode()
+        {
+
         }
 
         public void ExecuteAction()
